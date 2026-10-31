@@ -1,0 +1,11 @@
+{
+  "description": "Final model: ResNet-18, DINO pretraining (1,600 epochs) on all 2,400 training images, then fine-tuning on all 2,400 labelled images. Selected on validation (DINO 1,600 epochs, lr 3e-4). Test: 81.4 +- 0.9% (3 seeds).",
+  "ssl_pretrain": "python ssl_pretrain.py --method dino --epochs 1600 --images all --out results/ssl/dino_resnet18_e1600_all.pt",
+  "finetune_experiment": "hw2_final",
+  "seeds": [0, 1, 2],
+  "finetune_config": {"model": "resnet18", "img_size": 128, "augment": ["hflip", "rrc", "translate"],
+                      "schedule": "cosine", "epochs": 200, "amp": true, "lr": 0.0003,
+                      "init": "results/ssl/dino_resnet18_e1600_all.pt", "train_on": "trainval"},
+  "checkpoints": ["results/runs/hw2_final/41ba8cb7ef_s0.pt", "results/runs/hw2_final/41ba8cb7ef_s1.pt",
+                  "results/runs/hw2_final/41ba8cb7ef_s2.pt"]
+}

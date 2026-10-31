@@ -1,0 +1,127 @@
+\documentclass{article}
+
+\PassOptionsToPackage{numbers,compress}{natbib}
+\usepackage[final]{neurips_2024}
+\makeatletter
+\renewcommand{\@noticestring}{ITCS 6169/8169 Computer Vision -- Assignment 2 Report.}
+\makeatother
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsfonts}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+% Tighter section and float spacing to fit the two-page limit.
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{6pt plus 2pt minus 2pt}{3pt plus 1pt}
+\setlength{\textfloatsep}{6pt plus 2pt minus 2pt}
+\setlength{\intextsep}{6pt plus 2pt minus 2pt}
+\setlength{\abovecaptionskip}{3pt}
+\setlength{\belowcaptionskip}{2pt}
+
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+
+\title{Assignment 2: Self-Supervised Visual Representation Learning\\[2pt] \large ITCS 6169/8169 -- Computer Vision}
+
+\author{%
+  Ba-Thinh Lam \\ Department of Computer Science, University of North Carolina at Charlotte \\ \texttt{blam5@charlotte.edu}
+}
+
+\begin{document}
+
+\maketitle
+\vspace{-0.9cm}
+\begin{center}
+\textbf{Code \& checkpoints:} \url{https://github.com/sasukepn1999/itcs6169-assignment2} \quad
+\textbf{Best test accuracy:} 81.4$\pm$0.9\%
+\end{center}
+
+\section{Best Accuracy and Repository}
+\label{sec:result}
+
+Our best model reaches \textbf{81.4$\pm$0.9\%} test accuracy, 6.2 points above the supervised baseline. It is a ResNet-18~\cite{resnet} that is first pretrained with DINO~\cite{dino} self-distillation on the 2,400 training images for 1,600 epochs and then fine-tuned for classification on the same images. No external data or pretrained weights are used: every network starts from random initialisation. The code, the checkpoints and the instructions to reproduce our results are available on \href{https://github.com/sasukepn1999/itcs6169-assignment2}{GitHub}.
+
+\textbf{Evaluation protocol.} We split the 2,400 labelled images into 1,920 for training and 480 for validation, with the same seeded split as in Assignment~1. SSL pretraining only uses the 1,920 training images, so validation stays clean. Every choice is made on validation, using the average accuracy over the last 10 epochs (less optimistic than the best epoch); the test set only reports the selected configuration of each method. Once the recipe is fixed, the final model is trained on all 2,400 images. Numbers are the mean and standard deviation over three seeds.
+
+\section{Supervised Baseline}
+\label{sec:baseline}
+
+Our baseline is a ResNet-18 trained from scratch on $128\times128$ grayscale images (replicated to three channels), with random-resized cropping, translation and flipping, for 200 epochs with Adam (batch size 64, cosine schedule, peak learning rate $10^{-3}$ chosen on validation). It reaches \textbf{76.8\%} validation and \textbf{75.2\%} test accuracy, and clearly overfits: its final training loss is 0.008 against 1.11 on validation. A ViT-Tiny~\cite{vit} trained the same way only reaches 63.5\% on test, since transformers lack the locality bias of convolutions and need much more data.
+
+\section{Self-Supervised Learning Strategy}
+\label{sec:ssl}
+
+We mainly study \emph{SSL pretraining followed by fine-tuning}: an encoder is first trained without labels on the 1,920 training images for 800 epochs; we then attach a linear classifier and fine-tune the whole network with the baseline recipe. We compare four objectives that learn from different signals.
+
+\textbf{Contrastive learning (SimCLR~\cite{simclr}, MoCo v2~\cite{mocov2}).} Two random views of the same image should map to nearby embeddings, while views of other images are pushed away. As our images are grayscale, colour jitter is reduced to brightness and contrast, together with cropping, flipping and blurring. SimCLR takes its negatives from the batch (510 for a batch of 256), while MoCo keeps a queue of embeddings from a slowly updated momentum encoder. We limit the queue to 1,024 keys, since with only 1,920 images a longer queue would often contain the query image itself.
+
+\textbf{Self-distillation (DINO~\cite{dino}).} A student network learns to predict the output distribution of a teacher, an exponential moving average of the student. The teacher sees two large crops ($128\times128$) and the student also sees six small ones ($64\times64$), so the network must recognise a scene from a small part of it. DINO uses no negatives; centring and sharpening the teacher output prevent the trivial constant solution.
+
+\textbf{Masked image modelling (MAE~\cite{mae}).} A ViT-Tiny encoder sees only 25\% of the $16\times16$ patches, and a light decoder reconstructs the masked 75\%, which requires modelling the structure of scenes.
+
+\textbf{Joint training.} Alternatively, we add the SimCLR loss to the classification loss, with weight $\lambda\in\{0.1,1\}$.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Accuracy (\%). \emph{Probe}: linear classifier on the frozen SSL encoder (validation).}
+\label{tab:main}
+\begin{tabular}{llccc}
+\toprule
+Method & Backbone & Probe & Validation & Test \\
+\midrule
+Supervised baseline & ResNet-18 & -- & 76.8$\pm$1.3 & 75.2$\pm$1.1 \\
+Joint CE + SimCLR ($\lambda=0.1$) & ResNet-18 & -- & 78.3$\pm$1.3 & 77.8$\pm$0.8 \\
+SimCLR $\rightarrow$ fine-tune & ResNet-18 & 61.5 & 81.9$\pm$1.1 & 78.6$\pm$0.5 \\
+MoCo v2 $\rightarrow$ fine-tune & ResNet-18 & 72.3 & 81.6$\pm$0.2 & 80.2$\pm$0.7 \\
+DINO $\rightarrow$ fine-tune & ResNet-18 & 81.5 & 83.7$\pm$0.1 & 81.3$\pm$0.5 \\
+\midrule
+Supervised baseline & ViT-Tiny & -- & 60.1$\pm$0.4 & 63.5$\pm$0.5 \\
+MAE $\rightarrow$ fine-tune & ViT-Tiny & 57.7 & 64.3$\pm$0.9 & 67.8$\pm$0.8 \\
+\midrule
+DINO (1,600 epochs) $\rightarrow$ fine-tune & ResNet-18 & 81.9 & 85.5$\pm$0.4 & 80.7$\pm$1.0 \\
+\quad + validation images (best model) & ResNet-18 & -- & -- & \textbf{81.4$\pm$0.9} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Experimental Analysis}
+\label{sec:analysis}
+
+\textbf{Does SSL help with only 2,400 images?} Yes. Every SSL method improves over the supervised baseline on the same backbone (Table~\ref{tab:main}): from +3.4 (SimCLR) to +6.1 points (DINO) on test for ResNet-18, and +4.3 points for ViT-Tiny with MAE. Strikingly, a linear classifier on the frozen DINO encoder reaches 81.5\% on validation, more than the supervised baseline (76.8\%), without DINO seeing a label (random encoder: 36.9\%).
+
+\textbf{Pretraining or joint training?} Pretraining followed by fine-tuning works better (78.6--81.3\% vs.\ 77.8\% on test). We believe that in joint training the contrastive loss suffers from using the weaker classification augmentations and from competing with the cross-entropy from the first epoch, while pretraining first learns invariances and then specialises them.
+
+\textbf{Is a more complicated method better?} Only before fine-tuning. With a linear probe, DINO reaches 81.5\%, MoCo 72.3\% and SimCLR 61.5\%. We believe SimCLR suffers most from the small dataset, since its negatives come from batches drawn from only 1,920 images. After fine-tuning, however, the three methods end within 2.7 test points, so SSL here mainly provides a better starting point.
+
+\textbf{Overfitting and backbone.} SSL reduces over-confidence rather than memorisation: every fine-tuned model still reaches a near-zero training loss, but the validation loss drops from 1.11 to 0.61 with DINO pretraining. The backbone matters more than the SSL method: MAE improves ViT-Tiny by 4.3 points, yet it stays 7.4 test points below the ResNet-18 baseline: with 2,400 images, the inductive bias of convolutions matters most.
+
+\textbf{Best recipe.} A lower fine-tuning learning rate preserves the DINO features better ($10^{-4}$: 83.7\% vs.\ 82.9\% at $3\times10^{-4}$ on validation). As the DINO loss was still decreasing, we also pretrain for 1,600 epochs, which improves fine-tuning on validation (85.5\%) but not the linear probe (81.9\%). However, this gain does not carry over to test (80.7\% vs.\ 81.3\%); both differences are within one standard deviation, and part of the validation gain is likely due to selection on only 480 images. Our final model adds the validation images to both stages and reaches 81.4\% on test.
+
+\section{Limitations and Conclusion}
+\label{sec:conclusion}
+
+Our study has several limitations. Each SSL encoder is pretrained once, so the variance of pretraining is not measured, and our 480-image validation set cannot separate configurations within one point. We did not tune the SSL hyper-parameters and used $128\times128$ inputs to keep pretraining affordable, which costs accuracy compared with the $200\times200$ inputs of Assignment~1. Finally, MAE was only tested with a small ViT, so its objective and backbone effects cannot be separated.
+
+In conclusion, SSL pretraining is clearly useful when labels are scarce: it improves a ResNet-18 by about 6 points, and DINO alone learns features that beat supervised training. The SSL objective matters for frozen features but much less after fine-tuning, while the backbone matters most: with limited labels, SSL mainly provides a good initialisation learned from the images themselves.
+
+{\small
+\begin{thebibliography}{99}
+\setlength{\itemsep}{0pt}
+\bibitem{resnet} K. He, X. Zhang, S. Ren, and J. Sun. Deep residual learning for image recognition. In \emph{CVPR}, 2016.
+\bibitem{dino} M. Caron, H. Touvron, I. Misra, H. J\'egou, J. Mairal, P. Bojanowski, and A. Joulin. Emerging properties in self-supervised vision transformers. In \emph{ICCV}, 2021.
+\bibitem{vit} A. Dosovitskiy, L. Beyer, A. Kolesnikov, D. Weissenborn, X. Zhai, T. Unterthiner, M. Dehghani, M. Minderer, G. Heigold, S. Gelly, J. Uszkoreit, and N. Houlsby. An image is worth 16x16 words: Transformers for image recognition at scale. In \emph{ICLR}, 2021.
+\bibitem{simclr} T. Chen, S. Kornblith, M. Norouzi, and G. Hinton. A simple framework for contrastive learning of visual representations. In \emph{ICML}, 2020.
+\bibitem{mocov2} X. Chen, H. Fan, R. Girshick, and K. He. Improved baselines with momentum contrastive learning. \emph{arXiv:2003.04297}, 2020.
+\bibitem{mae} K. He, X. Chen, S. Xie, Y. Li, P. Doll\'ar, and R. Girshick. Masked autoencoders are scalable vision learners. In \emph{CVPR}, 2022.
+\end{thebibliography}
+}
+
+\end{document}
