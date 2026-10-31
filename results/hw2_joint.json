@@ -1,0 +1,154 @@
+[
+  {
+    "experiment": "joint simclr lambda=0.1 resnet18 lr=0.001",
+    "val_acc_mean": 79.375,
+    "val_acc_std": 1.0346989184549507,
+    "per_seed": [
+      80.83,
+      78.75,
+      78.54
+    ],
+    "best_epochs": [
+      177,
+      141,
+      168
+    ],
+    "params": 11184720,
+    "time_s_per_run": 531.3468412558237,
+    "label": "joint simclr lambda=0.1 resnet18",
+    "lr": 0.001,
+    "config": {
+      "img_size": 128,
+      "augment": [
+        "hflip",
+        "rrc",
+        "translate"
+      ],
+      "epochs": 200,
+      "amp": true,
+      "model": "resnet18",
+      "schedule": "cosine",
+      "ssl": "simclr",
+      "ssl_weight": 0.1,
+      "lr": 0.001
+    },
+    "val_last10": 78.24999999999999,
+    "val_last10_std": 1.3150878368073051,
+    "final_train_loss": 0.008138115662667486,
+    "final_val_loss": 1.0881765736473932
+  },
+  {
+    "experiment": "joint simclr lambda=0.1 resnet18 lr=0.0003",
+    "val_acc_mean": 77.84722222222223,
+    "val_acc_std": 1.543479914645338,
+    "per_seed": [
+      77.08,
+      80.0,
+      76.46
+    ],
+    "best_epochs": [
+      173,
+      161,
+      119
+    ],
+    "params": 11184720,
+    "time_s_per_run": 489.47855345408124,
+    "label": "joint simclr lambda=0.1 resnet18",
+    "lr": 0.0003,
+    "config": {
+      "img_size": 128,
+      "augment": [
+        "hflip",
+        "rrc",
+        "translate"
+      ],
+      "epochs": 200,
+      "amp": true,
+      "model": "resnet18",
+      "schedule": "cosine",
+      "ssl": "simclr",
+      "ssl_weight": 0.1,
+      "lr": 0.0003
+    },
+    "val_last10": 76.61111111111113,
+    "val_last10_std": 1.468253297940644,
+    "final_train_loss": 0.007525318581610919,
+    "final_val_loss": 0.973639088206821
+  },
+  {
+    "experiment": "joint simclr lambda=1 resnet18 lr=0.001",
+    "val_acc_mean": 78.81944444444444,
+    "val_acc_std": 0.09820927516479602,
+    "per_seed": [
+      78.75,
+      78.96,
+      78.75
+    ],
+    "best_epochs": [
+      171,
+      147,
+      199
+    ],
+    "params": 11184720,
+    "time_s_per_run": 339.4751834869385,
+    "label": "joint simclr lambda=1 resnet18",
+    "lr": 0.001,
+    "config": {
+      "img_size": 128,
+      "augment": [
+        "hflip",
+        "rrc",
+        "translate"
+      ],
+      "epochs": 200,
+      "amp": true,
+      "model": "resnet18",
+      "schedule": "cosine",
+      "ssl": "simclr",
+      "ssl_weight": 1.0,
+      "lr": 0.001
+    },
+    "val_last10": 77.4513888888889,
+    "val_last10_std": 0.5531196597705504,
+    "final_train_loss": 0.005363852931057207,
+    "final_val_loss": 0.9915078851911757
+  },
+  {
+    "experiment": "joint simclr lambda=1 resnet18 lr=0.0003",
+    "val_acc_mean": 77.43055555555556,
+    "val_acc_std": 0.8561686115234725,
+    "per_seed": [
+      76.46,
+      78.54,
+      77.29
+    ],
+    "best_epochs": [
+      167,
+      161,
+      125
+    ],
+    "params": 11184720,
+    "time_s_per_run": 339.3943281173706,
+    "label": "joint simclr lambda=1 resnet18",
+    "lr": 0.0003,
+    "config": {
+      "img_size": 128,
+      "augment": [
+        "hflip",
+        "rrc",
+        "translate"
+      ],
+      "epochs": 200,
+      "amp": true,
+      "model": "resnet18",
+      "schedule": "cosine",
+      "ssl": "simclr",
+      "ssl_weight": 1.0,
+      "lr": 0.0003
+    },
+    "val_last10": 75.63888888888889,
+    "val_last10_std": 0.58093089939901,
+    "final_train_loss": 0.00557946242366193,
+    "final_val_loss": 0.9379573822021485
+  }
+]

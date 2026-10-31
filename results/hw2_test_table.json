@@ -1,0 +1,156 @@
+[
+  {
+    "stage": "baselines",
+    "label": "supervised resnet18",
+    "lr": 0.001,
+    "val_last10": 76.75694444444444,
+    "val_last10_std": 1.3274973553250706,
+    "test": 75.16666666666667,
+    "test_std": 1.1242281302693369,
+    "test_seeds": [
+      75.25,
+      76.5,
+      73.75
+    ]
+  },
+  {
+    "stage": "baselines",
+    "label": "supervised vit_tiny",
+    "lr": 0.0003,
+    "val_last10": 60.0625,
+    "val_last10_std": 0.3539623593715199,
+    "test": 63.5,
+    "test_std": 0.5400617248673238,
+    "test_seeds": [
+      62.74999999999999,
+      64.0,
+      63.74999999999999
+    ]
+  },
+  {
+    "stage": "joint",
+    "label": "joint simclr lambda=0.1 resnet18",
+    "lr": 0.001,
+    "val_last10": 78.24999999999999,
+    "val_last10_std": 1.3150878368073051,
+    "test": 77.75,
+    "test_std": 0.816496580927726,
+    "test_seeds": [
+      78.75,
+      77.75,
+      76.75
+    ]
+  },
+  {
+    "stage": "joint",
+    "label": "joint simclr lambda=1 resnet18",
+    "lr": 0.001,
+    "val_last10": 77.4513888888889,
+    "val_last10_std": 0.5531196597705504,
+    "test": 76.66666666666667,
+    "test_std": 1.3123346456686351,
+    "test_seeds": [
+      78.5,
+      76.0,
+      75.5
+    ]
+  },
+  {
+    "stage": "finetune",
+    "label": "simclr -> fine-tune resnet18",
+    "lr": 0.0003,
+    "val_last10": 81.90277777777779,
+    "val_last10_std": 1.1260711635736458,
+    "test": 78.58333333333333,
+    "test_std": 0.5137011669140814,
+    "test_seeds": [
+      78.0,
+      79.25,
+      78.5
+    ]
+  },
+  {
+    "stage": "finetune",
+    "label": "moco -> fine-tune resnet18",
+    "lr": 0.001,
+    "val_last10": 81.5763888888889,
+    "val_last10_std": 0.23834725419070218,
+    "test": 80.16666666666667,
+    "test_std": 0.7168604389202189,
+    "test_seeds": [
+      81.0,
+      80.25,
+      79.25
+    ]
+  },
+  {
+    "stage": "finetune",
+    "label": "dino -> fine-tune resnet18",
+    "lr": 0.0003,
+    "val_last10": 82.89583333333333,
+    "val_last10_std": 0.3864007706456543,
+    "test": 80.91666666666667,
+    "test_std": 0.31180478223116176,
+    "test_seeds": [
+      81.25,
+      81.0,
+      80.5
+    ]
+  },
+  {
+    "stage": "finetune",
+    "label": "mae -> fine-tune vit_tiny",
+    "lr": 0.0003,
+    "val_last10": 64.3125,
+    "val_last10_std": 0.9001028747788687,
+    "test": 67.83333333333333,
+    "test_std": 0.8249579113843055,
+    "test_seeds": [
+      69.0,
+      67.25,
+      67.25
+    ]
+  },
+  {
+    "stage": "best",
+    "label": "dino (800 ep) -> fine-tune resnet18",
+    "lr": 0.0001,
+    "val_last10": 83.7013888888889,
+    "val_last10_std": 0.1157870277814709,
+    "test": 81.25,
+    "test_std": 0.5400617248673217,
+    "test_seeds": [
+      81.0,
+      80.75,
+      82.0
+    ]
+  },
+  {
+    "stage": "best",
+    "label": "dino (1600 ep) -> fine-tune resnet18",
+    "lr": 0.0003,
+    "val_last10": 85.54166666666667,
+    "val_last10_std": 0.4128295541028302,
+    "test": 80.66666666666667,
+    "test_std": 1.0274023338281628,
+    "test_seeds": [
+      79.5,
+      82.0,
+      80.5
+    ]
+  },
+  {
+    "stage": "final",
+    "label": "final: dino (1600 ep, all images) -> fine-tune resnet18",
+    "lr": 0.0003,
+    "val_last10": 100.0,
+    "val_last10_std": 0.0,
+    "test": 81.41666666666667,
+    "test_std": 0.9204467514322718,
+    "test_seeds": [
+      81.5,
+      80.25,
+      82.5
+    ]
+  }
+]

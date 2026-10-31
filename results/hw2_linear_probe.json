@@ -1,0 +1,44 @@
+[
+  {
+    "encoder": "random_resnet18",
+    "wd": 0.1,
+    "val": 36.87500059604645,
+    "test": 35.749998688697815,
+    "train": 90.10416865348816
+  },
+  {
+    "encoder": "random_vit_tiny",
+    "wd": 0.1,
+    "val": 25.624999403953552,
+    "test": 25.999999046325684,
+    "train": 43.48958432674408
+  },
+  {
+    "encoder": "results/ssl/simclr_resnet18_e800.pt",
+    "wd": 0.0001,
+    "val": 61.45833134651184,
+    "test": 66.25000238418579,
+    "train": 100.0
+  },
+  {
+    "encoder": "results/ssl/moco_resnet18_e800.pt",
+    "wd": 0.0001,
+    "val": 72.29166626930237,
+    "test": 73.50000143051147,
+    "train": 100.0
+  },
+  {
+    "encoder": "results/ssl/dino_resnet18_e800.pt",
+    "wd": 0.01,
+    "val": 81.45833611488342,
+    "test": 78.25000286102295,
+    "train": 95.83333134651184
+  },
+  {
+    "encoder": "results/ssl/mae_vit_tiny_e800.pt",
+    "wd": 0.0001,
+    "val": 57.70833492279053,
+    "test": 55.250000953674316,
+    "train": 66.56249761581421
+  }
+]

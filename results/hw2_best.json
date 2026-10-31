@@ -1,0 +1,224 @@
+[
+  {
+    "experiment": "dino (800 ep) -> fine-tune resnet18 lr=0.0003",
+    "val_acc_mean": 84.65277777777779,
+    "val_acc_std": 0.6874649261535857,
+    "per_seed": [
+      84.17,
+      84.17,
+      85.62
+    ],
+    "best_epochs": [
+      114,
+      164,
+      151
+    ],
+    "params": 11184720,
+    "time_s_per_run": 241.0886017481486,
+    "label": "dino (800 ep) -> fine-tune resnet18",
+    "lr": 0.0003,
+    "config": {
+      "img_size": 128,
+      "augment": [
+        "hflip",
+        "rrc",
+        "translate"
+      ],
+      "epochs": 200,
+      "amp": true,
+      "model": "resnet18",
+      "schedule": "cosine",
+      "init": "results/ssl/dino_resnet18_e800.pt",
+      "lr": 0.0003
+    },
+    "val_last10": 82.89583333333333,
+    "val_last10_std": 0.3864007706456543,
+    "final_train_loss": 0.004274873346730601,
+    "final_val_loss": 0.7517403430408902
+  },
+  {
+    "experiment": "dino (800 ep) -> fine-tune resnet18 lr=0.0001",
+    "val_acc_mean": 85.34722222222221,
+    "val_acc_std": 0.2598373185259673,
+    "per_seed": [
+      85.62,
+      85.0,
+      85.42
+    ],
+    "best_epochs": [
+      122,
+      37,
+      84
+    ],
+    "params": 11184720,
+    "time_s_per_run": 250.95360430081686,
+    "label": "dino (800 ep) -> fine-tune resnet18",
+    "lr": 0.0001,
+    "config": {
+      "img_size": 128,
+      "augment": [
+        "hflip",
+        "rrc",
+        "translate"
+      ],
+      "epochs": 200,
+      "amp": true,
+      "model": "resnet18",
+      "schedule": "cosine",
+      "init": "results/ssl/dino_resnet18_e800.pt",
+      "lr": 0.0001
+    },
+    "val_last10": 83.7013888888889,
+    "val_last10_std": 0.1157870277814709,
+    "final_train_loss": 0.004134212523866962,
+    "final_val_loss": 0.6139521373642816
+  },
+  {
+    "experiment": "dino (800 ep) -> fine-tune resnet18 lr=5e-05",
+    "val_acc_mean": 84.93055555555556,
+    "val_acc_std": 0.5973836991001804,
+    "per_seed": [
+      84.17,
+      85.62,
+      85.0
+    ],
+    "best_epochs": [
+      26,
+      30,
+      59
+    ],
+    "params": 11184720,
+    "time_s_per_run": 245.23370814323425,
+    "label": "dino (800 ep) -> fine-tune resnet18",
+    "lr": 5e-05,
+    "config": {
+      "img_size": 128,
+      "augment": [
+        "hflip",
+        "rrc",
+        "translate"
+      ],
+      "epochs": 200,
+      "amp": true,
+      "model": "resnet18",
+      "schedule": "cosine",
+      "init": "results/ssl/dino_resnet18_e800.pt",
+      "lr": 5e-05
+    },
+    "val_last10": 82.75694444444444,
+    "val_last10_std": 1.1747405807661357,
+    "final_train_loss": 0.007921740391369288,
+    "final_val_loss": 0.5771902044614156
+  },
+  {
+    "experiment": "dino (1600 ep) -> fine-tune resnet18 lr=0.0003",
+    "val_acc_mean": 86.59722222222223,
+    "val_acc_std": 0.35409857733282885,
+    "per_seed": [
+      86.46,
+      86.25,
+      87.08
+    ],
+    "best_epochs": [
+      189,
+      130,
+      165
+    ],
+    "params": 11184720,
+    "time_s_per_run": 236.39922467867532,
+    "label": "dino (1600 ep) -> fine-tune resnet18",
+    "lr": 0.0003,
+    "config": {
+      "img_size": 128,
+      "augment": [
+        "hflip",
+        "rrc",
+        "translate"
+      ],
+      "epochs": 200,
+      "amp": true,
+      "model": "resnet18",
+      "schedule": "cosine",
+      "init": "results/ssl/dino_resnet18_e1600.pt",
+      "lr": 0.0003
+    },
+    "val_last10": 85.54166666666667,
+    "val_last10_std": 0.4128295541028302,
+    "final_train_loss": 0.002238667783725153,
+    "final_val_loss": 0.6719823492897881
+  },
+  {
+    "experiment": "dino (1600 ep) -> fine-tune resnet18 lr=0.0001",
+    "val_acc_mean": 86.875,
+    "val_acc_std": 0.9001028747788665,
+    "per_seed": [
+      88.12,
+      86.46,
+      86.04
+    ],
+    "best_epochs": [
+      188,
+      129,
+      127
+    ],
+    "params": 11184720,
+    "time_s_per_run": 236.69461663564047,
+    "label": "dino (1600 ep) -> fine-tune resnet18",
+    "lr": 0.0001,
+    "config": {
+      "img_size": 128,
+      "augment": [
+        "hflip",
+        "rrc",
+        "translate"
+      ],
+      "epochs": 200,
+      "amp": true,
+      "model": "resnet18",
+      "schedule": "cosine",
+      "init": "results/ssl/dino_resnet18_e1600.pt",
+      "lr": 0.0001
+    },
+    "val_last10": 85.13194444444446,
+    "val_last10_std": 1.3990255096113264,
+    "final_train_loss": 0.002663560589846586,
+    "final_val_loss": 0.5530250946680705
+  },
+  {
+    "experiment": "dino (1600 ep) -> fine-tune resnet18 lr=5e-05",
+    "val_acc_mean": 86.875,
+    "val_acc_std": 0.5103103630798288,
+    "per_seed": [
+      87.5,
+      86.88,
+      86.25
+    ],
+    "best_epochs": [
+      52,
+      90,
+      88
+    ],
+    "params": 11184720,
+    "time_s_per_run": 236.5160734653473,
+    "label": "dino (1600 ep) -> fine-tune resnet18",
+    "lr": 5e-05,
+    "config": {
+      "img_size": 128,
+      "augment": [
+        "hflip",
+        "rrc",
+        "translate"
+      ],
+      "epochs": 200,
+      "amp": true,
+      "model": "resnet18",
+      "schedule": "cosine",
+      "init": "results/ssl/dino_resnet18_e1600.pt",
+      "lr": 5e-05
+    },
+    "val_last10": 85.18749999999999,
+    "val_last10_std": 0.8908940058332545,
+    "final_train_loss": 0.004716126104661574,
+    "final_val_loss": 0.5267180131541358
+  }
+]

@@ -1,0 +1,298 @@
+[
+  {
+    "experiment": "simclr -> fine-tune resnet18 lr=0.001",
+    "val_acc_mean": 83.33333333333333,
+    "val_acc_std": 0.6133167268283216,
+    "per_seed": [
+      83.54,
+      82.5,
+      83.96
+    ],
+    "best_epochs": [
+      135,
+      188,
+      126
+    ],
+    "params": 11184720,
+    "time_s_per_run": 247.45196056365967,
+    "label": "simclr -> fine-tune resnet18",
+    "lr": 0.001,
+    "config": {
+      "img_size": 128,
+      "augment": [
+        "hflip",
+        "rrc",
+        "translate"
+      ],
+      "epochs": 200,
+      "amp": true,
+      "model": "resnet18",
+      "schedule": "cosine",
+      "init": "results/ssl/simclr_resnet18_e800.pt",
+      "lr": 0.001
+    },
+    "val_last10": 81.8611111111111,
+    "val_last10_std": 0.485416169925033,
+    "final_train_loss": 0.0047592385672841275,
+    "final_val_loss": 0.8496473338868883
+  },
+  {
+    "experiment": "simclr -> fine-tune resnet18 lr=0.0003",
+    "val_acc_mean": 83.81944444444444,
+    "val_acc_std": 1.374929852307179,
+    "per_seed": [
+      82.29,
+      85.62,
+      83.54
+    ],
+    "best_epochs": [
+      133,
+      125,
+      198
+    ],
+    "params": 11184720,
+    "time_s_per_run": 253.74672985076904,
+    "label": "simclr -> fine-tune resnet18",
+    "lr": 0.0003,
+    "config": {
+      "img_size": 128,
+      "augment": [
+        "hflip",
+        "rrc",
+        "translate"
+      ],
+      "epochs": 200,
+      "amp": true,
+      "model": "resnet18",
+      "schedule": "cosine",
+      "init": "results/ssl/simclr_resnet18_e800.pt",
+      "lr": 0.0003
+    },
+    "val_last10": 81.90277777777779,
+    "val_last10_std": 1.1260711635736458,
+    "final_train_loss": 0.003740733284212183,
+    "final_val_loss": 0.8057094309065077
+  },
+  {
+    "experiment": "moco -> fine-tune resnet18 lr=0.001",
+    "val_acc_mean": 82.56944444444444,
+    "val_acc_std": 0.42808430576173623,
+    "per_seed": [
+      82.08,
+      83.12,
+      82.5
+    ],
+    "best_epochs": [
+      102,
+      127,
+      185
+    ],
+    "params": 11184720,
+    "time_s_per_run": 247.8721316655477,
+    "label": "moco -> fine-tune resnet18",
+    "lr": 0.001,
+    "config": {
+      "img_size": 128,
+      "augment": [
+        "hflip",
+        "rrc",
+        "translate"
+      ],
+      "epochs": 200,
+      "amp": true,
+      "model": "resnet18",
+      "schedule": "cosine",
+      "init": "results/ssl/moco_resnet18_e800.pt",
+      "lr": 0.001
+    },
+    "val_last10": 81.5763888888889,
+    "val_last10_std": 0.23834725419070218,
+    "final_train_loss": 0.006386259203524484,
+    "final_val_loss": 0.8769690367910598
+  },
+  {
+    "experiment": "moco -> fine-tune resnet18 lr=0.0003",
+    "val_acc_mean": 82.56944444444444,
+    "val_acc_std": 0.8729031312483698,
+    "per_seed": [
+      83.75,
+      82.29,
+      81.67
+    ],
+    "best_epochs": [
+      145,
+      153,
+      184
+    ],
+    "params": 11184720,
+    "time_s_per_run": 261.1387080351512,
+    "label": "moco -> fine-tune resnet18",
+    "lr": 0.0003,
+    "config": {
+      "img_size": 128,
+      "augment": [
+        "hflip",
+        "rrc",
+        "translate"
+      ],
+      "epochs": 200,
+      "amp": true,
+      "model": "resnet18",
+      "schedule": "cosine",
+      "init": "results/ssl/moco_resnet18_e800.pt",
+      "lr": 0.0003
+    },
+    "val_last10": 81.38194444444444,
+    "val_last10_std": 0.8644090074141696,
+    "final_train_loss": 0.005952313810282957,
+    "final_val_loss": 0.8170995314915975
+  },
+  {
+    "experiment": "dino -> fine-tune resnet18 lr=0.001",
+    "val_acc_mean": 82.9861111111111,
+    "val_acc_std": 0.19641855032959876,
+    "per_seed": [
+      82.71,
+      83.12,
+      83.12
+    ],
+    "best_epochs": [
+      154,
+      176,
+      172
+    ],
+    "params": 11184720,
+    "time_s_per_run": 248.93343925476074,
+    "label": "dino -> fine-tune resnet18",
+    "lr": 0.001,
+    "config": {
+      "img_size": 128,
+      "augment": [
+        "hflip",
+        "rrc",
+        "translate"
+      ],
+      "epochs": 200,
+      "amp": true,
+      "model": "resnet18",
+      "schedule": "cosine",
+      "init": "results/ssl/dino_resnet18_e800.pt",
+      "lr": 0.001
+    },
+    "val_last10": 81.99305555555556,
+    "val_last10_std": 0.09368567752244099,
+    "final_train_loss": 0.005168231271414293,
+    "final_val_loss": 0.9123700406816271
+  },
+  {
+    "experiment": "dino -> fine-tune resnet18 lr=0.0003",
+    "val_acc_mean": 84.65277777777779,
+    "val_acc_std": 0.6874649261535857,
+    "per_seed": [
+      84.17,
+      84.17,
+      85.62
+    ],
+    "best_epochs": [
+      114,
+      164,
+      151
+    ],
+    "params": 11184720,
+    "time_s_per_run": 246.6117525100708,
+    "label": "dino -> fine-tune resnet18",
+    "lr": 0.0003,
+    "config": {
+      "img_size": 128,
+      "augment": [
+        "hflip",
+        "rrc",
+        "translate"
+      ],
+      "epochs": 200,
+      "amp": true,
+      "model": "resnet18",
+      "schedule": "cosine",
+      "init": "results/ssl/dino_resnet18_e800.pt",
+      "lr": 0.0003
+    },
+    "val_last10": 82.89583333333333,
+    "val_last10_std": 0.3864007706456543,
+    "final_train_loss": 0.004274873346730601,
+    "final_val_loss": 0.7517403430408902
+  },
+  {
+    "experiment": "mae -> fine-tune vit_tiny lr=0.001",
+    "val_acc_mean": 62.916666666666664,
+    "val_acc_std": 0.45005143738943326,
+    "per_seed": [
+      63.54,
+      62.5,
+      62.71
+    ],
+    "best_epochs": [
+      165,
+      140,
+      109
+    ],
+    "params": 5502160,
+    "time_s_per_run": 246.7020591100057,
+    "label": "mae -> fine-tune vit_tiny",
+    "lr": 0.001,
+    "config": {
+      "img_size": 128,
+      "augment": [
+        "hflip",
+        "rrc",
+        "translate"
+      ],
+      "epochs": 200,
+      "amp": true,
+      "model": "vit_tiny",
+      "schedule": "warmup_cosine",
+      "init": "results/ssl/mae_vit_tiny_e800.pt",
+      "lr": 0.001
+    },
+    "val_last10": 59.98611111111112,
+    "val_last10_std": 1.35254532568218,
+    "final_train_loss": 0.2866102466152774,
+    "final_val_loss": 1.4872433715396458
+  },
+  {
+    "experiment": "mae -> fine-tune vit_tiny lr=0.0003",
+    "val_acc_mean": 67.08333333333333,
+    "val_acc_std": 0.29462782549440153,
+    "per_seed": [
+      67.29,
+      66.67,
+      67.29
+    ],
+    "best_epochs": [
+      128,
+      131,
+      173
+    ],
+    "params": 5502160,
+    "time_s_per_run": 244.68488947550455,
+    "label": "mae -> fine-tune vit_tiny",
+    "lr": 0.0003,
+    "config": {
+      "img_size": 128,
+      "augment": [
+        "hflip",
+        "rrc",
+        "translate"
+      ],
+      "epochs": 200,
+      "amp": true,
+      "model": "vit_tiny",
+      "schedule": "warmup_cosine",
+      "init": "results/ssl/mae_vit_tiny_e800.pt",
+      "lr": 0.0003
+    },
+    "val_last10": 64.3125,
+    "val_last10_std": 0.9001028747788687,
+    "final_train_loss": 0.16240809001028536,
+    "final_val_loss": 1.3268933667076959
+  }
+]

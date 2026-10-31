@@ -1,0 +1,40 @@
+[
+  {
+    "experiment": "final: dino (1600 ep, all images) -> fine-tune resnet18 lr=0.0003",
+    "val_acc_mean": 100.0,
+    "val_acc_std": 0.0,
+    "per_seed": [
+      100.0,
+      100.0,
+      100.0
+    ],
+    "best_epochs": [
+      68,
+      77,
+      66
+    ],
+    "params": 11184720,
+    "time_s_per_run": 246.08180300394693,
+    "label": "final: dino (1600 ep, all images) -> fine-tune resnet18",
+    "lr": 0.0003,
+    "config": {
+      "img_size": 128,
+      "augment": [
+        "hflip",
+        "rrc",
+        "translate"
+      ],
+      "epochs": 200,
+      "amp": true,
+      "model": "resnet18",
+      "schedule": "cosine",
+      "init": "results/ssl/dino_resnet18_e1600_all.pt",
+      "train_on": "trainval",
+      "lr": 0.0003
+    },
+    "val_last10": 100.0,
+    "val_last10_std": 0.0,
+    "final_train_loss": 0.001298456734059275,
+    "final_val_loss": 0.00016866244695847853
+  }
+]
